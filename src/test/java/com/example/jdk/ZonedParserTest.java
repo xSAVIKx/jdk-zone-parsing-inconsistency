@@ -10,7 +10,7 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.google.common.truth.Truth.assertThat;
 
 @DisplayName("`ZonedParser` should")
 final class ZonedParserTest {
@@ -29,7 +29,7 @@ final class ZonedParserTest {
 
         ZonedDateTime actual = ZonedParser.parse(dateString);
 
-        assertEquals(expected, actual);
+        assertThat(actual).isEqualTo(expected);
     }
 
     /**
@@ -47,6 +47,6 @@ final class ZonedParserTest {
 
         ZonedDateTime actual = ZonedParser.parse(dateString);
 
-        assertEquals(expected, actual);
+        assertThat(actual).isEqualTo(expected);
     }
 }
