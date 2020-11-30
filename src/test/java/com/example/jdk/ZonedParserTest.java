@@ -1,6 +1,7 @@
 package com.example.jdk;
 
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -37,6 +38,7 @@ final class ZonedParserTest {
      */
     @Test
     @DisplayName("parse UTC date string to a `ZonedDateTime` instance with Etc/UTC `ZoneId`")
+    @Disabled("We want to test Java11+ backward compatibility.")
     void parse_jdk11() {
         LocalDate localDate = LocalDate.of(2021, 05, 17);
         LocalTime localTime = LocalTime.of(21, 23);
