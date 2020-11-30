@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -30,6 +32,16 @@ final class ZonedParserTest {
         ZonedDateTime actual = ZonedParser.parse(dateString);
 
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("parse UTC date string to a `ZonedDateTime` and format back")
+    void ideal_test() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm a z", Locale.US);
+        String dateString = "05/17/2021 09:23 PM Etc/UTC";
+        ZonedDateTime zonedDateTime = formatter.parse(dateString, ZonedDateTime::from);
+        String formatted = formatter.format(zonedDateTime);
+        assertThat(formatted).isEqualTo(dateString);
     }
 
     /**
