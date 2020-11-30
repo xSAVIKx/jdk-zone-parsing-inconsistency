@@ -2,7 +2,6 @@ package com.example.jdk;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -30,7 +29,7 @@ final class ZonedParser {
      */
     static ZonedDateTime parse(String dateString) {
         Objects.requireNonNull(dateString);
-        TemporalAccessor accessor = ZONED_FORMATTER.parse(dateString);
-        return ZonedDateTime.from(accessor);
+        ZonedDateTime result = ZONED_FORMATTER.parse(dateString, ZonedDateTime::from);
+        return result;
     }
 }
