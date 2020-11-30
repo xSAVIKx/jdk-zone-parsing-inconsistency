@@ -3,7 +3,8 @@ package com.example.jdk;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * This class provides a test implementation that allows to showcase inconsistency between
@@ -28,8 +29,17 @@ final class ZonedParser {
      * Parses supplied {@code dateTime} using zoned US date-time formatter.
      */
     static ZonedDateTime parse(String dateTime) {
-        Objects.requireNonNull(dateTime);
+        requireNonNull(dateTime);
         ZonedDateTime result = ZONED_FORMATTER.parse(dateTime, ZonedDateTime::from);
+        return result;
+    }
+
+    /**
+     * Formats supplied {@code dateTime} using zoned US date-time formatter.
+     */
+    static String format(ZonedDateTime dateTime) {
+        requireNonNull(dateTime);
+        String result = ZONED_FORMATTER.format(dateTime);
         return result;
     }
 }

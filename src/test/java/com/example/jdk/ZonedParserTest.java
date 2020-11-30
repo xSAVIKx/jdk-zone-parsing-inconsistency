@@ -33,6 +33,23 @@ final class ZonedParserTest {
     }
 
     /**
+     * Verifies that {@code DateTimeFormatter} formats {@code UTC} {@code ZoneID}
+     * to the {@code UTC} formatted string.
+     */
+    @Test
+    @DisplayName("format `ZonedDateTime` instance with UTC `ZoneId` to a formatted string")
+    void format_jdk8() {
+        LocalDate localDate = LocalDate.of(2021, 05, 17);
+        LocalTime localTime = LocalTime.of(21, 23);
+        ZonedDateTime dateTime = ZonedDateTime.of(localDate, localTime, ZoneId.of("UTC"));
+        String expected = "05/17/2021 09:23 PM UTC";
+
+        String actual = ZonedParser.format(dateTime);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    /**
      * Verifies that {@code DateTimeFormatter} parses {@code UTC} time zone
      * to Etc/UTC {@code ZoneId}.
      */
@@ -46,6 +63,24 @@ final class ZonedParserTest {
         String dateString = "05/17/2021 09:23 PM UTC";
 
         ZonedDateTime actual = ZonedParser.parse(dateString);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    /**
+     * Verifies that {@code DateTimeFormatter} formats {@code Etc/UTC} {@code ZoneID}
+     * to the {@code Etc/UTC} formatted string.
+     */
+    @Test
+    @DisplayName("format `ZonedDateTime` instance with Etc/UTC `ZoneId` to a formatted string")
+    @Disabled("We want to test Java11+ backward compatibility.")
+    void format_jdk11() {
+        LocalDate localDate = LocalDate.of(2021, 05, 17);
+        LocalTime localTime = LocalTime.of(21, 23);
+        ZonedDateTime dateTime = ZonedDateTime.of(localDate, localTime, ZoneId.of("Etc/UTC"));
+        String expected = "05/17/2021 09:23 PM Etc/UTC";
+
+        String actual = ZonedParser.format(dateTime);
 
         assertThat(actual).isEqualTo(expected);
     }
