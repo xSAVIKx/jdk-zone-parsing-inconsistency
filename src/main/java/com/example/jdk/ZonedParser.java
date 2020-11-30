@@ -25,11 +25,11 @@ final class ZonedParser {
     }
 
     /**
-     * Parses supplied {@code dateString} using zoned US date-time formatter.
+     * Parses supplied {@code dateTime} using zoned US date-time formatter.
      */
-    static ZonedDateTime parse(String dateString) {
-        Objects.requireNonNull(dateString);
-        ZonedDateTime result = ZONED_FORMATTER.parse(dateString, ZonedDateTime::from);
+    static ZonedDateTime parse(String dateTime) {
+        Objects.requireNonNull(dateTime);
+        ZonedDateTime result = ZONED_FORMATTER.parse(dateTime, ZonedDateTime::from);
         return result;
     }
 }
